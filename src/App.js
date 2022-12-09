@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { useState } from "react";
 function App() {
+  const [sentence, setSentence] = useState("");
+  const [letter, setLetter] = useState("");
+  const [result, setResult] = useState("");
+  const findResult = () => {
+   if(sentence.indexOf(letter)===-1) setResult("The letter does not exist in the sentence");
+   else setResult(sentence.substring(sentence.indexOf(letter)));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+
+      <label htmlFor="sentence">Sentence: </label>
+      <input
+        type="text"
+        name="sentence"
+        onChange={(e) => {setSentence(e.target.value)} }
+        value={sentence} />
+
+      <label htmlFor="letter">Letter: </label>
+      <input
+        type="text"
+        name="letter"
+        onChange={(e) => {setLetter(e.target.value)} }
+        value={letter} />
+
+      <div className="result">{result}</div>
+
+      <button onClick={findResult}>Submit</button>
+
     </div>
   );
 }
