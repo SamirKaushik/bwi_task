@@ -2,6 +2,8 @@ import React from "react";
 import { useRef, useState } from "react";
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword} from "firebase/auth"
 import { auth,db } from "./firebase";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signin = () => {
     const emailContainer = useRef(null);
@@ -13,12 +15,10 @@ const Signin = () => {
         signInWithEmailAndPassword( auth,emailContainer.current.value, passwordContainer.current.value)
           .then((userCredential) => { 
             const user = userCredential.user;
-            console.log(userCredential)
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(error)
+            toast.error(errorMessage);
           });
     }
 
@@ -34,9 +34,8 @@ const Signin = () => {
 
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(error)
+                toast.error(errorMessage);
             })
     }
 
@@ -61,6 +60,7 @@ const Signin = () => {
                 <button type="submit" onClick={register?signUp:signIn}>Submit</button>
                 {register || <div onClick={signUp} style={{cursor:'pointer',fontWeight:"bolder"}}>Sign Up for a new account</div>}
             </form>
+            <ToastContainer/>
         </>
     );
 }
