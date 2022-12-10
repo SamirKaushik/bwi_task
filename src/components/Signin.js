@@ -76,7 +76,7 @@ const Signin = () => {
 
                 {register?<button type="submit" onClick={signUp}>Submit</button>:<button type="submit" onClick={signIn}>Submit</button>}
 
-                {register || <div onClick={()=>setRegister(true)} style={{ cursor: 'pointer', fontWeight: "bolder" }}>Sign Up for a new account</div>}
+                {register || <div onClick={()=>setRegister(true)} className="signup">Sign Up for a new account</div>}
             
             </form>
             <ToastContainer />

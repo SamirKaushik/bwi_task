@@ -67,9 +67,9 @@ const Home = () => {
                 <button onClick={findResult}>Submit</button>
 
             </div>
-            <button onClick={() => auth.signOut()}>Signout</button>
-            <button onClick={deleteAccount}>Delete Account</button>
-            <button onClick={resetPassword}>Reset Password</button>
+            <button className="top" id="blue" onClick={() => auth.signOut()}>Signout</button>
+            <button className="top" id="red" onClick={deleteAccount}>Delete Account</button>
+            <button className="top" id="green" onClick={resetPassword}>Reset Password</button>
             <ToastContainer></ToastContainer>
         </>
     );
