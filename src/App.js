@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Home from "./components/Home";
 import Signin from "./components/Signin";
 import { auth } from './components/firebase';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef, useState } from "react";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
-import { auth, db } from "./firebase";
+import { auth } from "./firebase";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
