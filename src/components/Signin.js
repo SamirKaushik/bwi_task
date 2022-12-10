@@ -18,10 +18,10 @@ const Signin = () => {
             })
             .catch((error) => {
                 if (error.code === 'auth/wrong-password') {
-                    toast.error('Please check the Password');
+                    toast.error('Wrong Password');
                 }
                 if (error.code === 'auth/user-not-found') {
-                    toast.error('Please check the Email');
+                    toast.error('User not found');
                 }
                 if (error.code === 'auth/invalid-email') {
                     toast.error('Invalid email');
@@ -41,13 +41,14 @@ const Signin = () => {
 
             })
             .catch((error) => {
+                console.log(error.code)
                 if (error.code === 'auth/email-already-in-use') {
                     toast.error('Email Already in Use');
                 }
                 if (error.code === 'auth/invalid-email') {
                     toast.error('Invalid email');
                 }
-                if (error.code === 'auth/invalid-password') {
+                if (error.code === 'auth/weak-password') {
                     toast.error('Password must be atleast 6 digits long');
                 }
             })
