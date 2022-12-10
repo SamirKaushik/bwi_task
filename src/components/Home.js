@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "./firebase";
-import { getAuth, deleteUser } from "firebase/auth";
+import { getAuth, deleteUser,sendPasswordResetEmail } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,12 +19,23 @@ const Home = () => {
             const auth = getAuth();
             const user = auth.currentUser;
             deleteUser(user)
-            .catch(
-                (error) => {
-                toast.error(error.code)
-                }
-            );
+                .catch(
+                    (error) => {
+                        toast.error(error.code)
+                    }
+                );
         }
+    }
+    const resetPassword = () => {
+        const auth = getAuth();
+        const email=auth.currentUser.email;
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+               toast.success(`Email has been sent to ${email}!`)
+            })
+            .catch((error) => {
+                toast.error("Error! Please try later!")
+            });
     }
 
     return (
@@ -61,6 +72,9 @@ const Home = () => {
             </p>
             <p>
                 <button onClick={deleteAccount}>Delete Account</button>
+            </p>
+            <p>
+                <button onClick={resetPassword}>Reset Password</button>
             </p>
             <ToastContainer></ToastContainer>
         </>
