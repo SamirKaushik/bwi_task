@@ -8,6 +8,7 @@ const Home = () => {
     const [sentence, setSentence] = useState("");
     const [letter, setLetter] = useState("");
     const [result, setResult] = useState("");
+
     const findResult = () => {
         if (sentence.indexOf(letter) === -1) setResult("The letter does not exist in the sentence");
         else setResult(sentence.substring(sentence.indexOf(letter)));
@@ -17,7 +18,6 @@ const Home = () => {
         if (resp) {
             const auth = getAuth();
             const user = auth.currentUser;
-
             deleteUser(user)
             .catch(
                 (error) => {
