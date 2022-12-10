@@ -56,7 +56,9 @@ const Signin = () => {
     return (
         <>
             <form action="" className="container">
+
                 {register ? <h1>Sign Up</h1> : <h1>Sign In</h1>}
+
                 <label htmlFor="email">Email: </label>
                 <input
                     type="email"
@@ -71,8 +73,10 @@ const Signin = () => {
                     ref={passwordContainer}
                 />
 
-                <button type="submit" onClick={register ? signUp : signIn}>Submit</button>
-                {register || <div onClick={signUp} style={{ cursor: 'pointer', fontWeight: "bolder" }}>Sign Up for a new account</div>}
+                {register?<button type="submit" onClick={signUp}>Submit</button>:<button type="submit" onClick={signIn}>Submit</button>}
+
+                {register || <div onClick={()=>setRegister(true)} style={{ cursor: 'pointer', fontWeight: "bolder" }}>Sign Up for a new account</div>}
+            
             </form>
             <ToastContainer />
         </>
