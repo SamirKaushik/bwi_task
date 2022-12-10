@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Home from "./components/Home";
 import Signin from "./components/Signin";
 import { auth } from './components/firebase';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
+  const navigate=useNavigate();
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       if (userAuth) {
@@ -15,8 +17,10 @@ function App() {
           email: userAuth.email
         }
         setUser(User)
+        navigate('/home')
       } else {
         setUser(null)
+        navigate('/login')
       }
     })
     return unsubscribe
@@ -24,7 +28,11 @@ function App() {
 
   return (
     <>
-      {user ? <Home /> : <Signin />}
+        <Routes>
+          <Route path="/" element={<Signin />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Signin />} />
+        </Routes>
     </>
   );
 }
